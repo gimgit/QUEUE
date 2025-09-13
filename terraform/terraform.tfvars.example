@@ -1,0 +1,17 @@
+# Terraform variables example file
+# Copy this to terraform.tfvars and update with your actual values
+
+# AWS Configuration
+aws_region = "us-east-1"
+
+# Project Configuration  
+project_name = "emr-workshop"
+
+# Backend Configuration (for remote state)
+backend_bucket = "your-terraform-state-bucket"
+backend_key = "emr-workshop/terraform.tfstate"
+backend_region = "us-east-1"
+dynamodb_table = "your-terraform-lock-table"
+
+# EC2 Configuration
+ec2_key_name = "your-key-pair-name"
