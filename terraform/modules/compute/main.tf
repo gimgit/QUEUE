@@ -1,6 +1,6 @@
 resource "aws_emr_cluster" "iceberg_cluster" {
   name          = "${var.project_name}-emr-cluster"
-  release_label = "emr-6.15.0"
+  release_label = var.emr_release_label
   applications  = ["Spark", "Hadoop", "Hive"]
 
   termination_protection            = false
@@ -18,15 +18,15 @@ resource "aws_emr_cluster" "iceberg_cluster" {
   }
 
   master_instance_group {
-    instance_type = "m5.xlarge"
+    instance_type = var.master_instance_type
   }
 
   core_instance_group {
-    instance_type  = "m5.xlarge"
-    instance_count = 2
+    instance_type  = var.core_instance_type
+    instance_count = var.core_instance_count
 
     ebs_config {
-      size                 = 32
+      size                 = var.ebs_size
       type                 = "gp3"
       volumes_per_instance = 1
     }

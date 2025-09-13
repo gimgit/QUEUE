@@ -53,3 +53,33 @@ variable "bootstrap_bucket_name" {
   description = "Bootstrap bucket name"
   type        = string
 }
+
+variable "emr_release_label" {
+  description = "EMR release label"
+  type        = string
+  default     = "emr-6.15.0"
+}
+
+variable "master_instance_type" {
+  description = "EMR master instance type"
+  type        = string
+  default     = "m5.xlarge"
+}
+
+variable "core_instance_type" {
+  description = "EMR core instance type"
+  type        = string
+  default     = "m5.xlarge"
+}
+
+variable "core_instance_count" {
+  description = "Number of core instances"
+  type        = number
+  default     = 2
+}
+
+variable "ebs_size" {
+  description = "EBS volume size for core instances"
+  type        = number
+  default     = 32
+}

@@ -21,8 +21,8 @@ resource "aws_internet_gateway" "emr_igw" {
 # Subnets
 resource "aws_subnet" "emr_public_subnet" {
   vpc_id                  = aws_vpc.emr_vpc.id
-  cidr_block              = "10.0.1.0/24"
-  availability_zone       = "us-east-1a"
+  cidr_block              = var.public_subnet_cidr
+  availability_zone       = var.public_availability_zone
   map_public_ip_on_launch = true
 
   tags = {
@@ -32,8 +32,8 @@ resource "aws_subnet" "emr_public_subnet" {
 
 resource "aws_subnet" "emr_private_subnet" {
   vpc_id            = aws_vpc.emr_vpc.id
-  cidr_block        = "10.0.2.0/24"
-  availability_zone = "us-east-1b"
+  cidr_block        = var.private_subnet_cidr
+  availability_zone = var.private_availability_zone
 
   tags = {
     Name = "${var.project_name}-private-subnet"
@@ -107,7 +107,7 @@ resource "aws_security_group" "emr_master_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.allowed_ssh_cidr]
   }
 
   ingress {

@@ -30,8 +30,13 @@ module "storage" {
 module "networking" {
   source = "./modules/networking"
   
-  project_name = var.project_name
-  vpc_cidr     = "10.0.0.0/16"
+  project_name               = var.project_name
+  vpc_cidr                  = "10.0.0.0/16"
+  public_subnet_cidr        = var.public_subnet_cidr
+  private_subnet_cidr       = var.private_subnet_cidr
+  public_availability_zone  = var.public_availability_zone
+  private_availability_zone = var.private_availability_zone
+  allowed_ssh_cidr          = var.allowed_ssh_cidr
 }
 
 module "iam" {
@@ -70,6 +75,12 @@ module "compute" {
   
   gold_bucket_name           = module.storage.gold_bucket_name
   bootstrap_bucket_name      = module.storage.bootstrap_bucket_name
+  
+  emr_release_label          = var.emr_release_label
+  master_instance_type       = var.master_instance_type
+  core_instance_type         = var.core_instance_type
+  core_instance_count        = var.core_instance_count
+  ebs_size                   = var.ebs_size
 }
 
 module "monitoring" {

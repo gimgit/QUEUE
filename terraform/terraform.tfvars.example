@@ -15,3 +15,17 @@ dynamodb_table = "your-terraform-lock-table"
 
 # EC2 Configuration
 ec2_key_name = "your-key-pair-name"
+
+# Networking Configuration
+public_subnet_cidr = "10.0.1.0/24"
+private_subnet_cidr = "10.0.2.0/24"
+public_availability_zone = "us-east-1a"
+private_availability_zone = "us-east-1b"
+allowed_ssh_cidr = "10.0.0.0/16"
+
+# EMR Configuration
+emr_release_label = "emr-6.15.0"
+master_instance_type = "m5.xlarge"
+core_instance_type = "m5.xlarge"
+core_instance_count = 2
+ebs_size = 32

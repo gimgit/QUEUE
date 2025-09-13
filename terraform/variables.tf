@@ -35,3 +35,65 @@ variable "dynamodb_table" {
   description = "DynamoDB table for Terraform state locking"
   type        = string
 }
+
+# Networking variables
+variable "public_subnet_cidr" {
+  description = "CIDR block for public subnet"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "private_subnet_cidr" {
+  description = "CIDR block for private subnet"
+  type        = string
+  default     = "10.0.2.0/24"
+}
+
+variable "public_availability_zone" {
+  description = "Availability zone for public subnet"
+  type        = string
+  default     = "us-east-1a"
+}
+
+variable "private_availability_zone" {
+  description = "Availability zone for private subnet"
+  type        = string
+  default     = "us-east-1b"
+}
+
+variable "allowed_ssh_cidr" {
+  description = "CIDR block allowed for SSH access"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+# EMR variables
+variable "emr_release_label" {
+  description = "EMR release label"
+  type        = string
+  default     = "emr-6.15.0"
+}
+
+variable "master_instance_type" {
+  description = "EMR master instance type"
+  type        = string
+  default     = "m5.xlarge"
+}
+
+variable "core_instance_type" {
+  description = "EMR core instance type"
+  type        = string
+  default     = "m5.xlarge"
+}
+
+variable "core_instance_count" {
+  description = "Number of core instances"
+  type        = number
+  default     = 2
+}
+
+variable "ebs_size" {
+  description = "EBS volume size for core instances"
+  type        = number
+  default     = 32
+}
